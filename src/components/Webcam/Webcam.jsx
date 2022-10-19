@@ -11,7 +11,7 @@ if (window.innerWidth >= 900) {
 }
 const videoConstraints = {
   width: 200,
-  height: camHeight,
+  height: 600,
   facingMode: "environment",
 };
 
@@ -31,7 +31,7 @@ export const WebcamCapture = () => {
           <Webcam
             audio={false}
             width={200}
-            height={camHeight}
+            height={600}
             ref={webcamRef}
             screenshotFormat="image/jpeg"
             videoConstraints={videoConstraints}
