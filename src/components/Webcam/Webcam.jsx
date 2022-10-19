@@ -6,6 +6,10 @@ import "./WebCam.css";
 export const WebcamCapture = () => {
   const [image, setImage] = useState("");
   const [camHeight, setCamHeight] = useState(0);
+  const [screenSize, setScreenSize] = useState(window.innerWidth);  
+  const setDimension =()=>{
+    setScreenSize(window.innerWidth);
+  }
   // let camHeight = 0;
   const webcamRef = React.useRef(null);
   // if (window.innerWidth >= 900) {
@@ -15,13 +19,18 @@ export const WebcamCapture = () => {
   // }
   let screenWidth = window.innerWidth;
     useEffect(() => {
-      console.log(window.innerWidth)
+      window.addEventListener("resize", setDimension);
+      console.log(window.innerWidth);
       if (window.innerWidth <= 900) {
         setCamHeight(410);
       } else {
         setCamHeight(200);
       }
-    },[camHeight]);
+     return () => {
+       window.removeEventListener("resize", setDimension);
+     };
+      
+    },[screenSize]);
 
   const videoConstraints = {
     width: 200,
