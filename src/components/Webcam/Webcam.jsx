@@ -13,7 +13,7 @@ if(window.innerWidth >= 800){
 const videoConstraints = {
     width: 200,
     height: camHeight,
-    facingMode: "user"
+    facingMode: "environment"
 };
 
 export const WebcamCapture = () => {
