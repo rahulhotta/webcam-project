@@ -1,24 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Webcam from "react-webcam";
 import "./WebCam.css";
 
-const WebcamComponent = () => <Webcam />;
-let camHeight = 0;
-if (window.innerWidth >= 900) {
-  camHeight = 200;
-} else {
-  camHeight = 420;
-}
-const videoConstraints = {
-  width: 200,
-  height: 600,
-  facingMode: "environment",
-};
 
 export const WebcamCapture = () => {
   const [image, setImage] = useState("");
+  const [camHeight, setCamHeight] = useState(0);
+  // let camHeight = 0;
   const webcamRef = React.useRef(null);
+  // if (window.innerWidth >= 900) {
+  //   camHeight = 200;
+  // } else {
+  //   camHeight = 410;
+  // }
+  let screenWidth = window.innerWidth;
+    useEffect(() => {
+      console.log(window.innerWidth)
+      if (window.innerWidth <= 900) {
+        setCamHeight(410);
+      } else {
+        setCamHeight(200);
+      }
+    },[camHeight]);
 
+  const videoConstraints = {
+    width: 200,
+    height: camHeight,
+    facingMode: "environment",
+  };
   const capture = React.useCallback(() => {
     const imageSrc = webcamRef.current.getScreenshot();
     setImage(imageSrc);
@@ -31,7 +40,7 @@ export const WebcamCapture = () => {
           <Webcam
             audio={false}
             width={200}
-            height={600}
+            height={camHeight}
             ref={webcamRef}
             screenshotFormat="image/jpeg"
             videoConstraints={videoConstraints}
