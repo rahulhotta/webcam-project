@@ -1,0 +1,26 @@
+.webcam-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.webcam-img {
+  margin-top: 20vh;
+  margin-bottom: 6px;
+}
+
+.webcam-btn
+{
+    color: white;
+    background-color: black;
+    padding: 10px 20px;
+    border-radius: 30px;
+    border: 2px solid black;
+}
+
+.webcam-btn:hover{
+    background-color: white;
+    color: black;
+}
